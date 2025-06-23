@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, precision_score, recall_score, f1_score
 import pickle
 import os
 from datetime import datetime
@@ -42,6 +42,10 @@ def generate_feature_importance_plot(model, feature_names, output_path):
         plt.savefig(output_path)
         plt.close()
 
+def get_feature_names(df):
+    """Get feature names from dataframe excluding target and ID columns"""
+    return [col for col in df.columns if col not in ['Attrition', 'EmployeeID']]
+
 def generate_report(data_path, model_path, output_dir):
     """Generate a comprehensive report on model performance"""
     # Create output directory if it doesn't exist
@@ -50,6 +54,9 @@ def generate_report(data_path, model_path, output_dir):
     # Load data and model
     df = pd.read_csv(data_path)
     model = load_model(model_path)
+    
+    # Get feature names before preparing data
+    feature_names = get_feature_names(df)
     
     # Prepare data for prediction
     X, y = prepare_data_for_prediction(df)
@@ -100,4 +107,68 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     generate_report(args.data, args.model, args.output)
+
+
+def prepare_data_for_prediction(df):
+    """Prepare data for prediction by converting categorical variables"""
+    # Create a copy of the dataframe
+    df_copy = df.copy()
+    
+    # Convert Attrition to numeric
+    if 'Attrition' in df_copy.columns and df_copy['Attrition'].dtype == 'object':
+        df_copy['Attrition'] = df_copy['Attrition'].map({'Yes': 1, 'No': 0})
+    
+    # Remove EmployeeID as it's not a feature
+    X = df_copy.drop(['Attrition', 'EmployeeID'], axis=1, errors='ignore')
+    y = df_copy['Attrition']
+    
+    return X, y
+
+
+def generate_recommendations(model, feature_names, output_dir):
+    """Generate recommendations based on feature importance"""
+    if not hasattr(model, 'feature_importances_'):
+        return
+    
+    # Get feature importance scores
+    importances = model.feature_importances_
+    feature_importance = list(zip(feature_names, importances))
+    feature_importance.sort(key=lambda x: x[1], reverse=True)
+    
+    # Generate recommendations based on top features
+    recommendations = [
+        "# Attrition Prevention Recommendations\n\n",
+        "Based on the machine learning model analysis, here are the key recommendations:\n\n"
+    ]
+    
+    for feature, importance in feature_importance[:5]:  # Top 5 features
+        if feature == 'MonthlyIncome':
+            recommendations.append("1. **Compensation Review**\n"
+                                "   - Implement regular salary reviews\n"
+                                "   - Ensure competitive compensation packages\n"
+                                "   - Consider performance-based bonuses\n")
+        elif feature == 'JobSatisfaction':
+            recommendations.append("2. **Job Satisfaction Improvement**\n"
+                                "   - Conduct regular employee satisfaction surveys\n"
+                                "   - Implement feedback-driven improvements\n"
+                                "   - Enhance work environment and culture\n")
+        elif feature == 'YearsSinceLastPromotion':
+            recommendations.append("3. **Career Development**\n"
+                                "   - Create clear promotion criteria\n"
+                                "   - Implement regular promotion reviews\n"
+                                "   - Provide professional development opportunities\n")
+        elif feature == 'OverTime':
+            recommendations.append("4. **Work-Life Balance**\n"
+                                "   - Monitor and regulate overtime\n"
+                                "   - Implement flexible working hours\n"
+                                "   - Ensure adequate staffing levels\n")
+        elif feature == 'Age':
+            recommendations.append("5. **Age-Specific Retention Strategies**\n"
+                                "   - Develop mentorship programs\n"
+                                "   - Create age-diverse team structures\n"
+                                "   - Provide age-appropriate benefits\n")
+    
+    # Save recommendations to file
+    with open(os.path.join(output_dir, 'attrition_prevention_recommendations.md'), 'w') as f:
+        f.write('\n'.join(recommendations))
 
