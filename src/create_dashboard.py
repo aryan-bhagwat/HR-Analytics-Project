@@ -5,15 +5,12 @@ import pandas as pd
 import pickle
 import os
 
-# Load data and model
 data_path = "c:\\Aryan\\HR Analytics Project\\data\\hr_data.csv"
 model_path = "c:\\Aryan\\HR Analytics Project\\models\\best_attrition_model.pkl"
 df = pd.read_csv(data_path)
 
-# Create a Dash application
 app = dash.Dash(__name__)
 
-# Define the layout
 app.layout = html.Div([
     html.H1("HR Analytics Dashboard - Employee Attrition"),
     
@@ -63,4 +60,4 @@ app.layout = html.Div([
 ])
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Changed from run_server() to run()
+    app.run(debug=True)

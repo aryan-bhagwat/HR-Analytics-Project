@@ -10,6 +10,10 @@ __pycache__/
 models/*.pkl
 reports/*
 visualizations/*
+
+# Keep outputs
+!outputs/
+!outputs/*
 HR_Analytics_Final_Report.pdf
 
 # Keep directory structure

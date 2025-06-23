@@ -1,5 +1,25 @@
 # HR Analytics: Employee Attrition Prediction
 
+## Sample Outputs
+
+### Model Performance
+![Confusion Matrix](outputs/confusion_matrix.png)
+![Feature Importance](outputs/feature_importance.png)
+
+### Key Findings
+- The model achieved high accuracy in predicting employee attrition
+- Key factors influencing attrition include:
+  - Monthly Income
+  - Job Satisfaction
+  - Years Since Last Promotion
+  - Work-Life Balance
+
+### Sample Recommendations
+See detailed recommendations in [Attrition Prevention Recommendations](outputs/attrition_prevention_recommendations.md)
+
+### Full Report
+A comprehensive analysis is available in [HR Analytics Final Report](outputs/HR_Analytics_Final_Report.pdf)
+
 ## Project Overview
 This project implements a comprehensive HR analytics solution focused on predicting and understanding employee attrition. Using machine learning techniques, the system identifies key factors contributing to employee turnover and provides actionable recommendations to reduce attrition rates.
 

@@ -131,9 +131,9 @@ def add_figure_to_pdf(fig, pdf):
     img_bytes = io.BytesIO()
     canvas = FigureCanvas(fig)
     canvas.print_figure(img_bytes)
-    img_bytes.seek(0)  # Reset the file pointer to the beginning
+    img_bytes.seek(0)  # Reset the buffer
     
-    # Save to a temporary file since FPDF needs a file path
+    # Save the image to a temporary file
     temp_img_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'temp_chart.png')
     with open(temp_img_path, 'wb') as f:
         f.write(img_bytes.getvalue())
