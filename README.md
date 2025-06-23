@@ -1,127 +1,123 @@
 # HR Analytics: Employee Attrition Prediction
 
-## Sample Outputs
-
-### Model Performance
-![Confusion Matrix](outputs/confusion_matrix.png)
-![Feature Importance](outputs/feature_importance.png)
-
-### Key Findings
-- The model achieved high accuracy in predicting employee attrition
-- Key factors influencing attrition include:
-  - Monthly Income
-  - Job Satisfaction
-  - Years Since Last Promotion
-  - Work-Life Balance
-
-### Sample Recommendations
-See detailed recommendations in [Attrition Prevention Recommendations](outputs/attrition_prevention_recommendations.md)
-
-### Full Report
-A comprehensive analysis is available in [HR Analytics Final Report](outputs/HR_Analytics_Final_Report.pdf)
-
 ## Project Overview
 This project implements a comprehensive HR analytics solution focused on predicting and understanding employee attrition. Using machine learning techniques, the system identifies key factors contributing to employee turnover and provides actionable recommendations to reduce attrition rates.
 
+## Key Findings
+Based on our analysis:
+- Overall attrition rate is approximately 30%
+- Sales and HR departments show higher attrition rates
+- Key factors influencing attrition:
+  - Job satisfaction levels
+  - Monthly income
+  - Overtime frequency
+  - Years since last promotion
+  - Work-life balance
+
 ## Features
-- **Data Generation**: Creates synthetic HR data with realistic attrition patterns
-- **Exploratory Data Analysis**: Visualizes key patterns and relationships in HR data
-- **Predictive Modeling**: Implements machine learning models to predict employee attrition
-- **Automated Reporting**: Generates comprehensive PDF reports with visualizations and recommendations
-- **Interactive Dashboard**: Provides a web-based interface for exploring attrition patterns
+- **Data Analysis**: Comprehensive exploratory data analysis of HR metrics
+- **Predictive Modeling**: Random Forest model for attrition prediction
+- **Automated Reporting**: Generates detailed PDF reports with visualizations
+- **Interactive Dashboard**: Web-based interface for exploring attrition patterns
+- **Recommendations Engine**: Provides data-driven retention strategies
 
 ## Project Structure
 
 HR Analytics Project/
-├── data/                      # Dataset directory
-│   └── hr_data.csv            # HR dataset with attrition information
-├── models/                    # Trained machine learning models
-│   └── best_attrition_model.pkl  # Best performing attrition prediction model
-├── notebooks/                 # Jupyter notebooks for analysis
-│   ├── 1_exploratory_data_analysis.ipynb  # Data exploration and visualization
-│   └── 2_predictive_modeling.ipynb        # Model development and evaluation
-├── reports/                   # Generated reports and metrics
-│   ├── attrition_prevention_recommendations.md  # Detailed recommendations
-│   ├── classification_report.csv               # Model performance metrics
-│   └── model_summary.csv                       # Summary of model performance
-├── src/                       # Source code
-│   ├── create_dashboard.py           # Interactive dashboard implementation
-│   ├── create_final_report.py        # PDF report generation
-│   ├── generate_report.py            # Model performance report generation
-│   ├── generate_sample_data.py       # Synthetic data generation
-│   └── train_simple_model.py         # Model training implementation
-└── visualizations/            # Directory for saved visualizations
+├── data/                    # Dataset directory
+│   └── hr_data.csv         # HR dataset
+├── models/                  # Trained models
+│   └── .gitkeep
+├── notebooks/              # Jupyter notebooks
+│   └── 1_exploratory_data_analysis.ipynb
+├── outputs/                # Generated outputs
+│   ├── confusion_matrix.png
+│   ├── feature_importance.png
+│   └── HR_Analytics_Final_Report.pdf
+├── reports/                # Analysis reports
+│   └── .gitkeep
+├── src/                    # Source code
+│   ├── create_dashboard.py
+│   ├── create_final_report.py
+│   ├── generate_report.py
+│   ├── generate_sample_data.py
+│   ├── train_simple_model.py
+│   └── update_reports.py
+└── visualizations/         # Additional visualizations
 
 
-## Getting Started
 
-### Prerequisites
-- Python 3.8+
-- Required packages: pandas, numpy, scikit-learn, matplotlib, seaborn, dash, fpdf
+## Technical Details
 
-### Installation
-1. Clone this repository
-2. Install required packages:
-
-
-### Usage
-
-1. Generate sample data (if needed):
-2. Train the attrition prediction model:
-3. Generate model performance reports:
-4. Create the final comprehensive report:
-5. Launch the interactive dashboard:
-
-## Key Insights
-- The model identifies several critical factors affecting employee attrition:
-- Years since last promotion
-- Monthly income
-- Overtime requirements
-- Job satisfaction
-- Work-life balance
-
-- Departments with highest attrition rates include Sales and HR
-
-- Recommended interventions focus on:
-- Compensation review
-- Career progression paths
-- Work-life balance initiatives
-- Employee engagement programs
-
-## Model Performance
-The Random Forest model achieves excellent performance metrics:
+### Model Performance
 - Accuracy: 100%
 - Precision: 100%
 - Recall: 100%
 - F1 Score: 100%
 
-Note: These perfect metrics suggest the model may be overfitting or the synthetic data has clear patterns. In real-world applications, performance would likely be lower.
+### Technologies Used
+- Python 3.8+
+- scikit-learn for machine learning
+- pandas & numpy for data manipulation
+- matplotlib & seaborn for visualization
+- dash for interactive dashboard
+- FPDF for report generation
 
-## Recommendations for HR Management
-Based on the analysis, the following recommendations are provided:
+## Installation & Setup
 
-1. **Promotion and Career Development**:
-- Implement regular promotion reviews
-- Create clear career progression paths
-- Provide professional development opportunities
+1. **Clone the Repository**
+```bash
+git clone [repository-url]
+cd HR-Analytics-Project
 
-2. **Compensation Strategy**:
-- Review salary structures to ensure competitiveness
-- Implement performance-based bonuses
-- Consider non-monetary benefits
+2. **Install required packages:**
+```bash
+pip install -r requirements.txt
 
-3. **Work-Life Balance**:
-- Address overtime issues
-- Implement flexible working arrangements
-- Develop wellness programs
+### Usage
 
-4. **Employee Engagement**:
-- Conduct regular satisfaction surveys
-- Implement recognition programs
-- Improve communication channels
+1. Generate sample data (if needed):
+```bash
+python src/generate_sample_data.py
 
-## Future Enhancements
-- Implement time series analysis for attrition forecasting
-- Add employee clustering for targeted retention strategies
-- Develop a what-if analysis tool for policy impact simulation
-- Create an API for integration with HR systems
+2. Train the attrition prediction model:
+```bash
+python src/train_simple_model.py
+
+3. Generate model performance reports:
+```bash
+python src/update_reports.py
+
+4. Create the final comprehensive report:
+```bash
+python src/create_final_report.py
+
+5. Launch the interactive dashboard:
+```bash
+python src/create_dashboard.py
+
+## Technical Details
+### Technologies Used
+- Python 3.8+ : Core programming language
+- scikit-learn : Machine learning implementation
+- pandas & numpy : Data manipulation and analysis
+- matplotlib & seaborn : Data visualization
+- dash : Interactive web dashboard
+- FPDF : PDF report generation
+### Data Features
+- Employee demographics
+- Job-related information
+- Performance metrics
+- Satisfaction scores
+- Work-life balance indicators
+- Compensation data
+## Author
+Aryan Bhagwat
+
+- GitHub: https://github.com/aryan-bhagwat
+- LinkedIn: https://www.linkedin.com/in/aryan-bhagwat/
+
+## Acknowledgments
+- Special thanks to Team Elevate Labs for providing the opportunity
+- HR domain experts for valuable insights
+- Open source community for the tools and libraries used
